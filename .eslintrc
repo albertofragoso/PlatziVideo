@@ -1,4 +1,4 @@
-{
+/*{
   "env": {
     "browser": true,
     "es6": true,
@@ -203,4 +203,4 @@
     "wrap-regex": 0,
     "yoda": [2, "never"]
   }
-}
+}*/
