@@ -4,7 +4,7 @@ import '../assets/styles/components/Header.scss'
 
 const Header = () => (
   <header className="header">
-    <img tabindex="0" className="header__img" src="./logo.png" alt="Platzi Video" />
+    <img tabIndex="0" className="header__img" src="./logo.png" alt="Platzi Video" />
     <div className="header__menu">
       <div className="header__menu--profile">
         <img src="./user.png" alt="User image" />
