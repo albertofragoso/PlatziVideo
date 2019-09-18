@@ -18,39 +18,35 @@ const Home = () => {
   if(!videos) return <h1>Loading...</h1>
   
   return (
-    <>
-      <Header />
-      <main>
-        <Search />
-        {
-          videos.mylist.length > 0 &&
-          <Categories category="My List">
-            <Carousel>
-              <CarouselItem />
-            </Carousel>
-          </Categories>
-        }
-        <Categories category="Trends">
+    <main>
+      <Search />
+      {
+        videos.mylist.length > 0 &&
+        <Categories category="My List">
           <Carousel>
-            {
-              videos.trends.map(video => 
-                <CarouselItem key={video.id} { ...video } />
-              )
-            }
+            <CarouselItem />
           </Carousel>
         </Categories>
-        <Categories category="Originals">
-          <Carousel>
-            {
-              videos.originals.map(video => 
-                <CarouselItem key={video.id} { ...video } />
-              )
-            }
-          </Carousel>
-        </Categories>
-      </main>
-      <Footer />
-    </>
+      }
+      <Categories category="Trends">
+        <Carousel>
+          {
+            videos.trends.map(video => 
+              <CarouselItem key={video.id} { ...video } />
+            )
+          }
+        </Carousel>
+      </Categories>
+      <Categories category="Originals">
+        <Carousel>
+          {
+            videos.originals.map(video => 
+              <CarouselItem key={video.id} { ...video } />
+            )
+          }
+        </Carousel>
+      </Categories>
+    </main>
   )
 }
 
