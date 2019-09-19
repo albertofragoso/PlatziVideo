@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import '../assets/styles/Signup.scss'
 
@@ -12,7 +13,11 @@ const Signup = () => (
         <input aria-label="Password" class="signup__input" name="password" type="password" placeholder="Password" />
         <button class="signup__button">Sign up</button>
       </form>
-      <p class="signup__container--login"><a href="/">Log in</a></p>
+      <p class="signup__container--login">
+        <Link to="/login">
+          Log in
+        </Link>
+      </p>
     </div>
   </section>
 )
