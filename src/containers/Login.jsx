@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import googleIcon from '../assets/static/google.png'
 import facebookIcon from '../assets/static/facebook.png'
 
@@ -23,7 +24,12 @@ const Login = () => (
         <div tabindex="0"><img src={googleIcon} alt="Google login" /> Log in with Google</div>
         <div tabindex="0"><img src={facebookIcon} alt="Facebook login" /> Log in with Facebook</div>
       </div>
-      <p class="login__container--register">Don't have an account? <a href="/">Register</a></p>
+      <p class="login__container--register">
+        Don't have an account?
+        <Link to="/signup">
+          Register
+        </Link>
+      </p>
     </div>
   </section>
 )

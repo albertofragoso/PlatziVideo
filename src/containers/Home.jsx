@@ -1,37 +1,37 @@
 import React from 'react'
-import Header from '../components/Header'
+import { connect } from 'react-redux'
 import Search from '../components/Search'
 import Categories from '../components/Categories'
 import Carousel from '../components/Carousel'
 import CarouselItem from '../components/CarouselItem'
-import Footer from '../components/Footer'
-import useInitialState from '../hooks/useInitialState'
 
 import '../assets/styles/App.scss'
 
-const API = 'http://localhost:3000/initalState'
-
-const Home = () => {
-
-  const videos = useInitialState(API)
-
-  if(!videos) return <h1>Loading...</h1>
+const Home = ({ myList, trends, originals }) => {
   
   return (
     <main>
       <Search />
       {
-        videos.mylist.length > 0 &&
+        myList.length > 0 &&
         <Categories category="My List">
           <Carousel>
-            <CarouselItem />
+            {
+              myList.map(video => 
+                <CarouselItem 
+                  key={video.id} 
+                  { ...video }
+                  isList 
+                />
+              )
+            }
           </Carousel>
         </Categories>
       }
       <Categories category="Trends">
         <Carousel>
           {
-            videos.trends.map(video => 
+            trends.map(video => 
               <CarouselItem key={video.id} { ...video } />
             )
           }
@@ -40,7 +40,7 @@ const Home = () => {
       <Categories category="Originals">
         <Carousel>
           {
-            videos.originals.map(video => 
+            originals.map(video => 
               <CarouselItem key={video.id} { ...video } />
             )
           }
@@ -50,4 +50,6 @@ const Home = () => {
   )
 }
 
-export default Home
+const mapStateToProps = state => ({ ...state })
+
+export default connect(mapStateToProps)(Home)
