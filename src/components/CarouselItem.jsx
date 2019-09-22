@@ -52,6 +52,7 @@ const CarouselItem = ({ id, title, year, duration, cover, contentRating, isList,
 }
 
 CarouselItem.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
