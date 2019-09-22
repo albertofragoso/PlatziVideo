@@ -1,15 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { logoutRequest } from '../actions'
 import gravatar from '../utils/gravatar'
 
 import '../assets/styles/components/Header.scss'
 import logo from '../assets/static/logo.png'
 import userIcon from '../assets/static/user.png'
 
-const Header = ({ user }) => {
+const Header = ({ user, logoutRequest }) => {
 
   const hasUser = Object.keys(user).length > 0
+
+  const handleLogout = () => logoutRequest({})
 
   return (
     <header className="header">
@@ -26,11 +29,12 @@ const Header = ({ user }) => {
           <p>Profile</p>
         </div>
         <ul>
-          <li><a href="#">Account</a></li>
           <li>
-            <Link to="/login">
-              Log in
-            </Link>
+            {
+              hasUser
+                ? <a href="#logout" onClick={handleLogout}>Log out</a>
+                : <Link to="/login">Log in</Link>
+            }
           </li>
         </ul>
       </div>
@@ -40,4 +44,8 @@ const Header = ({ user }) => {
 
 const mapStateToProps = state => ({ user: state.user })
 
-export default connect(mapStateToProps)(Header)
+const mapDispatchToProps = {
+  logoutRequest,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
