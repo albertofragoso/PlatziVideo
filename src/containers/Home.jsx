@@ -7,45 +7,45 @@ import CarouselItem from '../components/CarouselItem'
 
 import '../assets/styles/App.scss'
 
-const Home = ({ myList, trends, originals }) => {
+const Home = ({ myList, trends, originals, search }) => {
   
   return (
     <main>
       <Search />
-      {
-        myList.length > 0 &&
-        <Categories category="My List">
-          <Carousel>
-            {
-              myList.map(video => 
-                <CarouselItem 
-                  key={video.id} 
-                  { ...video }
-                  isList 
-                />
-              )
-            }
-          </Carousel>
-        </Categories>
+      { myList.length > 0 &&
+          <Categories category="My List">
+            <Carousel>
+              {
+                myList.map(video => 
+                  <CarouselItem 
+                    key={video.id} 
+                    { ...video }
+                    isList 
+                  />
+                )
+              }
+            </Carousel>
+          </Categories>
       }
-      <Categories category="Trends">
-        <Carousel>
-          {
-            trends.map(video => 
-              <CarouselItem key={video.id} { ...video } />
-            )
-          }
-        </Carousel>
-      </Categories>
-      <Categories category="Originals">
-        <Carousel>
-          {
-            originals.map(video => 
-              <CarouselItem key={video.id} { ...video } />
-            )
-          }
-        </Carousel>
-      </Categories>
+      { search
+          ? <Categories category="Your search">
+              <Carousel>
+                { search.map(video => <CarouselItem key={video.id} { ...video } />) }
+              </Carousel>
+            </Categories>
+          :<>
+              <Categories category="Trends">
+                <Carousel>
+                  { trends.map(video => <CarouselItem key={video.id} { ...video } />) }
+                </Carousel>
+              </Categories>
+              <Categories category="Originals">
+                <Carousel>
+                  { originals.map(video => <CarouselItem key={video.id} { ...video } />) }
+                </Carousel>
+              </Categories>
+            </>
+      }
     </main>
   )
 }
