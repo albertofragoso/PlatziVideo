@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { logginRequest } from '../actions'
+import { loginRequest } from '../actions'
 import googleIcon from '../assets/static/google.png'
 import facebookIcon from '../assets/static/facebook.png'
 
@@ -21,7 +21,7 @@ const Login = props => {
 
   const handleSubmit = e => {  
     e.preventDefault()
-    props.logginRequest(form)
+    props.loginRequest(form)
     props.history.push('/')
   }
 
@@ -70,7 +70,7 @@ const Login = props => {
 }
 
 const mapDispatchToProps = {
-  logginRequest,
+  loginRequest,
 }
 
 export default connect(null, mapDispatchToProps)(Login)
